@@ -1,0 +1,22 @@
+idf_component_register(
+    SRCS
+        "main.c"
+        "board_io.c"
+        "audio_board.c"
+        "display_ui.c"
+        "lv_font_simhei_16_full.c"
+        "wifi_station.c"
+        "doubao_realtime.c"
+        "simple_websocket.c"
+    INCLUDE_DIRS "."
+    REQUIRES
+        esp_wifi
+        esp_event
+        esp_netif
+        nvs_flash
+        esp_lcd
+        driver
+        esp_timer
+        json
+        esp-tls
+)

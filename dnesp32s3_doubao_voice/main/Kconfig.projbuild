@@ -1,0 +1,81 @@
+menu "DNESP32S3 Doubao Voice Assistant"
+
+config APP_WIFI_SSID
+    string "Wi-Fi SSID"
+    default "YOUR_WIFI_NAME"
+
+config APP_WIFI_PASSWORD
+    string "Wi-Fi password"
+    default "YOUR_WIFI_PASSWORD"
+
+choice APP_SPI_LCD_TYPE
+    prompt "SPI ST7789 display"
+    default APP_SPI_LCD_320X240
+
+config APP_SPI_LCD_320X240
+    bool "2.4-inch 320x240 ST7789 (recommended)"
+
+config APP_SPI_LCD_240X240
+    bool "1.3-inch 240x240 ST7789"
+
+endchoice
+
+choice DOUBAO_AUTH_MODE
+    prompt "Doubao authentication mode"
+    default DOUBAO_AUTH_API_KEY
+
+config DOUBAO_AUTH_API_KEY
+    bool "New console API Key (recommended)"
+
+config DOUBAO_AUTH_LEGACY
+    bool "Legacy App ID + Access Token"
+
+endchoice
+
+config DOUBAO_API_KEY
+    string "Doubao Voice API Key"
+    default ""
+    depends on DOUBAO_AUTH_API_KEY
+
+config DOUBAO_APP_ID
+    string "Legacy App ID"
+    default ""
+    depends on DOUBAO_AUTH_LEGACY
+
+config DOUBAO_ACCESS_TOKEN
+    string "Legacy Access Token"
+    default ""
+    depends on DOUBAO_AUTH_LEGACY
+
+config DOUBAO_RESOURCE_ID
+    string "Realtime voice resource ID"
+    default "volc.speech.dialog"
+
+config DOUBAO_MODEL
+    string "Realtime dialogue model"
+    default "1.2.1.1"
+    help
+        1.2.1.1 is the O2.0 model. 2.2.0.0 is the SC2.0 model and requires a matching voice.
+
+config DOUBAO_SPEAKER
+    string "Voice ID"
+    default "zh_female_vv_jupiter_bigtts"
+
+config DOUBAO_BOT_NAME
+    string "Assistant name"
+    default "Doubao"
+
+config DOUBAO_SYSTEM_ROLE
+    string "System role"
+    default "You are a helpful Chinese voice assistant. Reply accurately and briefly in Chinese."
+
+config DOUBAO_SPEAKING_STYLE
+    string "Speaking style"
+    default "Natural, concise and friendly"
+
+config AUDIO_OUTPUT_VOLUME
+    int "Speaker volume (0-100)"
+    range 0 100
+    default 100
+
+endmenu
